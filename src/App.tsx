@@ -51,10 +51,13 @@ export const App = () => {
 
     const removeMoney = (banknote: BanknotsType) => {
         // Снятие денег сделаем в последнюю очередь, после настройки фильтров и отрисовки денег
-        // const index = money.findIndex
-        //  if (index !== -1) {
-        //      setMoney(money.filter((el, i) =>{el.banknote==filterValue}));
-        //  }
+        const index = money.findIndex(m=>m.banknote===banknote)
+        console.log(index,banknote)
+        console.log(money.filter((el, i) =>{i!==index}))
+         if (index !== -1) {
+             setMoney(money.filter((el, i) =>i!==index));
+         }
+         console.log(money)
     }
 
     return (
@@ -63,6 +66,7 @@ export const App = () => {
                 data={filteredMoney}   //отрисовать будем деньги после фильтрации
                 setFilterValue={setFilterValue}  //useState передаем? Так можно было?!
                 addMoney={addMoney}
+                removeMoney={removeMoney}
             />
         </div>
     );
